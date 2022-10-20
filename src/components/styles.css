@@ -1,0 +1,112 @@
+.main-page {
+  display: center;
+  /* background-color: aqua; */
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
+    monospace;
+}
+
+.main-page .my-todos {
+  text-align: center;
+}
+
+.main-page .open-todos {
+  text-align: center;
+}
+
+form {
+  background: #fff740;
+  border-radius: 0.35rem;
+  box-shadow: 1px 1px 4px 1px #bfb700;
+  max-width: 400px;
+  margin: 2rem auto;
+  padding: 1rem;
+}
+
+form .input__title {
+  appearance: unset;
+  background: unset;
+  border: unset;
+  outline: unset;
+  display: block;
+  width: 100%;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 1.2rem;
+  font-weight: bold;
+  margin-bottom: 0.5rem;
+}
+
+form .input__text {
+  appearance: unset;
+  background: unset;
+  border: unset;
+  outline: unset;
+  display: block;
+  min-width: 100%;
+  max-width: 100%;
+  overflow: hidden;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 1rem;
+}
+
+ul {
+  padding-left: unset;
+  display: flex;
+  flex-wrap: wrap;
+
+  margin: 2rem;
+}
+
+ul .note-entry .note__title {
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 1.2rem;
+  font-weight: bold;
+  margin-bottom: 0.5rem;
+}
+
+ul .note-entry .note__text {
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 1rem;
+}
+
+ul .myred {
+  list-style-type: none;
+  /* man entfernt die Aufzählungspunkte */
+
+  flex: 0 1 calc(33.3% - 4rem);
+  /* wie verhält sich der Eintrag im flex */
+  height: fit-content;
+  background: red;
+  border-radius: 0.35rem;
+  box-shadow: 1px 1px 4px 1px #5e0d0a;
+  margin: 1rem;
+  padding: 1rem;
+}
+
+ul .mygreen {
+  background-color: green;
+  list-style-type: none;
+  /* man entfernt die Aufzählungspunkte */
+  flex: 0 1 calc(33.3% - 4rem);
+  /* wie verhält sich der Eintrag im flex */
+  height: fit-content;
+  background: #fff740;
+  border-radius: 0.35rem;
+  box-shadow: 1px 1px 4px 1px #bfb700;
+  margin: 1rem;
+  padding: 1rem;
+}
+
+.note__controls {
+  display: flex;
+  flex-flow: row-reverse nowrap;
+}
+
+.note__controls__delete {
+  appearance: unset;
+  background: unset;
+  border: unset;
+  cursor: pointer;
+}

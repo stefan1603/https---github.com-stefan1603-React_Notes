@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from "react";
 import Todo from "./Todo";
+import CryptoJS from "crypto-js";
+//import "./styles.css";
 
 const TodoList = () => {
   const [openCount, countOpenTodos] = useState(0); //Zählwert für offene Todos
@@ -9,22 +11,45 @@ const TodoList = () => {
     const parsed = JSON.parse(items);
     return parsed || [];
   });
-  const [titleInput, setTitleInput] = useState(""); //Input
-
+  const [titleInput, setTitleInput] = useState(""); //TITLE
+  const [noteInput, setNoteInput] = useState(""); //NOTE
   const changeText = (e) => {
     //damit die Seite nicht immer refreshed
     setTitleInput(e.target.value);
   };
 
+  const changeNote = (e) => {
+    //damit die Seite nicht immer refreshed
+    setNoteInput(e.target.value);
+  };
+
   const submit = (e) => {
     e.preventDefault();
 
-    const newTodos = [...todos, { description: titleInput, done: false }];
+    const myID = function generateId(title, text, length = 10) {
+      //length = 10 ist der Default-Wert
+      return CryptoJS.SHA256(title + text + new Date())
+        .toString()
+        .substring(0, length);
+    };
+
+    const newTodos = [
+      ...todos,
+      {
+        title: titleInput,
+        note: noteInput,
+        done: false,
+        id: myID(titleInput, noteInput),
+      },
+    ];
+
     setTodos(newTodos);
     setTitleInput("");
+    setNoteInput("");
   };
 
   const countOpen = () => {
+    //Funktion zum zählen der offnen Todos
     const donetodos = todos.filter((item) => {
       return !item.done;
     });
@@ -32,6 +57,7 @@ const TodoList = () => {
   };
 
   const changeTodo = (index) => {
+    //Funktion für Farbeändern; GLAUB ICH
     const newTodos = [...todos]; //hier wird Kopie erstellt; niemals "echten" State verändern
     if (newTodos[index].done) {
       newTodos[index].done = false;
@@ -53,23 +79,36 @@ const TodoList = () => {
   }, [todos]);
 
   return (
-    <div>
-      <h1>Meine ToDos</h1>
-      <h2>Offene Todos: {openCount}</h2>
+    <div className="main-page">
+      <h1 className="my-todos">My Notes</h1>
+      <h2 className="open-todos">Open Notes: {openCount}</h2>
       <form>
         <input
+          className="input__title"
           onChange={changeText}
           value={titleInput} //2-way-data binding
           type="text"
           autoFocus
-          placeholder="Neuer Eintrag"
+          placeholder="Titel"
         />
+        <textarea
+          onChange={changeNote}
+          id="text"
+          className="input__text"
+          value={noteInput}
+          type="text"
+          //name="text"
+          placeholder="Enter note ..."
+          //spellCheck="false"
+          rows="6"
+        ></textarea>
         <input onClick={submit} type="submit" value="Add todo" />
       </form>
       {todos.map((item, index) => {
         return (
           <Todo
-            description={item.description}
+            title={item.title}
+            note={item.note}
             done={item.done}
             key={index}
             index={index}
