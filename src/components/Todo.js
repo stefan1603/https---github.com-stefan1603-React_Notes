@@ -1,7 +1,15 @@
 import React, { useState } from "react";
 import "./styles.css";
 
-const Todo = ({ title, note, done, onChangeTodo, index, onDeleteTodo }) => {
+const Todo = ({
+  title,
+  note,
+  done,
+  onChangeTodo,
+  index,
+  onDeleteTodo,
+  updateTodo,
+}) => {
   return (
     //ternary operator
     <ul>
@@ -26,7 +34,14 @@ const Todo = ({ title, note, done, onChangeTodo, index, onDeleteTodo }) => {
           >
             Delete
           </button>
-          <button className="note_controls_edit">Edit</button>
+          <button
+            className="note_controls_edit"
+            onClick={() => {
+              updateTodo();
+            }}
+          >
+            Edit
+          </button>
         </div>
       </li>
     </ul>

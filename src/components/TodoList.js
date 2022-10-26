@@ -73,7 +73,9 @@ const TodoList = () => {
     setTodos(newTodos);
   };
 
-  const editTodo = () => {};
+  const editTodo = () => {
+    console.log("HEIR");
+  };
 
   useEffect(() => {
     //spezieller REACT-Hook
@@ -117,6 +119,7 @@ const TodoList = () => {
             index={index}
             onChangeTodo={changeTodo}
             onDeleteTodo={deleteTodo}
+            updateTodo={editTodo}
           />
         );
       })}
