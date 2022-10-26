@@ -73,7 +73,10 @@ const TodoList = () => {
     setTodos(newTodos);
   };
 
+  const editTodo = () => {};
+
   useEffect(() => {
+    //spezieller REACT-Hook
     countOpen();
     localStorage.setItem("items", JSON.stringify(todos));
   }, [todos]);
